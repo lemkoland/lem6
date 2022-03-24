@@ -61,6 +61,15 @@ query WordPressPostTag ($id: ID!, $page: Int) {
       }
     }
   }
+  allWordPressCategory (sortBy: "name", order: ASC) {
+edges {
+  node {
+    title
+    id
+    path
+  }
+}
+}
 }
 </page-query>
 
@@ -77,6 +86,34 @@ export default {
     return {
       title: this.$page.wordPressPostTag.title
     }
+  },
+  mounted() {
+    const tl = new TimelineLite();
+    const posts = document.querySelectorAll(".post")
+    tl.from('.inin', 2, {delay: .6, clipPath: 'polygon(0 50%, 100% 50%, 100% 50%, 0 50%)', easing: 'elastic' })
+    .to('.inin', 1, { clipPath: 'polygon(0 50%, 100% 50%, 100% 50%, 0 50%)', easing: 'elastic'})
+    .to('.in', 1, { clipPath: 'polygon(0 50%, 100% 50%, 100% 50%, 0 50%)', easing: 'easeOutQuint'}, '-=.5')
+    .from('.tyt', 1, { opacity: 0})
+    .from('.header', 1, { clipPath: 'polygon(0 50%, 100% 50%, 100% 50%, 0 50%)', easing: 'easeOutQuint'})
+    .to(posts, 1, {opacity: 1, clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', easing: 'easeOutQuint', stagger: 0.4}, '-=.7');
   }
 }
 </script>
+<style>
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+  flex: 1 1 1;
+}
+
+.post-list li{
+  margin:0;
+  padding: 0;
+  border:0;
+}
+
+
+
+
+</style>
