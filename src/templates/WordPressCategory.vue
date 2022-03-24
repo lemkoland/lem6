@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <h1>Category: {{ $page.wordPressCategory.title }} </h1>
+    <h1>Zobacz z kategorii <br> {{ $page.wordPressCategory.title }} </h1>
     <ul class="post-list">
       <li v-for="{ node } in $page.wordPressCategory.belongsTo.edges" :key="node.id">
         <Post :post="node" />
@@ -38,7 +38,7 @@ query WordPressCategory ($id: ID!, $page: Int) {
               mediaDetails {
                 width
               }
-            } 
+            }
         	}
         }
       }
@@ -61,6 +61,15 @@ query WordPressCategory ($id: ID!, $page: Int) {
       }
     }
   }
+  allWordPressCategory (sortBy: "name", order: ASC) {
+edges {
+  node {
+    title
+    id
+    path
+  }
+}
+}
 }
 </page-query>
 
